@@ -11,29 +11,29 @@
 				},
 				{
 					"slug": "foreground",
-					"color": "#404040",
+					"color": "#121212",
 					"name": "Foreground"
 				},
 				{
 					"slug": "primary",
-					"color": "#b91c1c",
+					"color": "#052962",
 					"name": "Primary"
 				},
 				{
-					"slug": "secondary",
-					"color": "#15803d",
-					"name": "Secondary"
+					"slug": "accent",
+					"color": "#c70000",
+					"name": "Accent"
 				},
 				{
-					"slug": "tertiary",
-					"color": "#0369a1",
-					"name": "Tertiary"
+					"slug": "muted",
+					"color": "#767676",
+					"name": "Muted"
 				}
 			]
 		},
 		"layout": {
-			"contentSize": "40rem",
-			"wideSize": "60rem"
+			"contentSize": "860px",
+			"wideSize": "1300px"
 		}
 	}
 }
