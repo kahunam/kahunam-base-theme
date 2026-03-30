@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package _test
+ * @package kahu
  */
 
 ?><!doctype html>

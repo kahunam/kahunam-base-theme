@@ -8,7 +8,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package _test
+ * @package kahu
  */
 
 get_header();

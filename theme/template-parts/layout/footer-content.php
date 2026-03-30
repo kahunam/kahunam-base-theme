@@ -13,7 +13,7 @@
 	<div class="content-container align-container-center">
 
 		<div class="margin-bottom-large">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo link-unstyled" rel="home" aria-label="<?php bloginfo( 'name' ); ?>">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo link-unstyled" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<?php echo file_get_contents( get_template_directory() . '/images/logo.svg' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents ?>
 			</a>
 			<?php
@@ -55,7 +55,7 @@
 		</div>
 
 		<div class="footer-copyright">
-			&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'kahu' ); ?>
+			&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?>. <?php esc_html_e( 'All rights reserved.', 'kahu' ); ?>
 		</div>
 
 	</div>

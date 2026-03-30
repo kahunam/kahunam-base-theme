@@ -12,7 +12,7 @@
 <header id="masthead" class="site-header">
 	<div class="content-container align-container-center header-inner">
 
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo link-unstyled" rel="home" aria-label="<?php bloginfo( 'name' ); ?>">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo link-unstyled" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 			<?php echo file_get_contents( get_template_directory() . '/images/logo.svg' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents ?>
 		</a>
 
