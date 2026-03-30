@@ -61,6 +61,9 @@ if ( ! function_exists( 'kahu_setup' ) ) :
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'responsive-embeds' );
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'css/theme.css' );
+		add_theme_support( 'align-wide' );
 		remove_theme_support( 'block-templates' );
 	}
 endif;

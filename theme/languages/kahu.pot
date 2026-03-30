@@ -1,0 +1,258 @@
+# Copyright (C) 2026 Kahunam
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kahunam Base 0.1.0\n"
+"Report-Msgid-Bugs-To: https://kahunam.com\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-30T00:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: Claude Code\n"
+"X-Domain: kahu\n"
+
+#: theme/404.php:18
+msgid "Page Not Found"
+msgstr ""
+
+#: theme/404.php:22
+msgid "This page could not be found. It might have been removed or renamed, or it may never have existed."
+msgstr ""
+
+#: theme/comments.php:34
+msgid "One comment on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#: theme/comments.php:42
+msgid "%1$s comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: theme/comments.php:72
+msgid "Comments are closed."
+msgstr ""
+
+#: theme/functions.php:41
+msgid "Primary"
+msgstr ""
+
+#: theme/functions.php:42
+msgid "Footer Col 1"
+msgstr ""
+
+#: theme/functions.php:43
+msgid "Footer Col 2"
+msgstr ""
+
+#: theme/functions.php:44
+msgid "Footer Col 3"
+msgstr ""
+
+#: theme/functions.php:45
+msgid "Footer Col 4"
+msgstr ""
+
+#: theme/functions.php:78
+msgid "Footer"
+msgstr ""
+
+#: theme/functions.php:80
+msgid "Add widgets here to appear in your footer."
+msgstr ""
+
+#: theme/header.php:27
+msgid "Skip to content"
+msgstr ""
+
+#: theme/search.php:23
+#: theme/template-parts/content/content-none.php:21
+msgid "Search results for:"
+msgstr ""
+
+#: theme/single.php:26
+msgid "Next Post"
+msgstr ""
+
+#: theme/single.php:27
+msgid "Next post:"
+msgstr ""
+
+#: theme/single.php:29
+msgid "Previous Post"
+msgstr ""
+
+#: theme/single.php:30
+msgid "Previous post:"
+msgstr ""
+
+#: theme/template-parts/content/content.php:35
+#: theme/template-parts/content/content-page.php:32
+#: theme/template-parts/content/content-single.php:44
+msgid "Pages:"
+msgstr ""
+
+#: theme/template-parts/content/content.php:17
+#: theme/template-parts/content/content-excerpt.php:17
+msgctxt "post"
+msgid "Featured"
+msgstr ""
+
+#: theme/template-parts/content/content-none.php:28
+msgid "Nothing Found"
+msgstr ""
+
+#: theme/template-parts/content/content-none.php:39
+msgid "Your site is set to show the most recent posts on your homepage, but you haven&rsquo;t published any posts."
+msgstr ""
+
+#: theme/template-parts/content/content-none.php:46
+msgid "Add or publish posts"
+msgstr ""
+
+#: theme/template-parts/content/content-none.php:55
+msgid "Your search generated no results. Please try a different search."
+msgstr ""
+
+#: theme/template-parts/content/content-none.php:65
+msgid "No content matched your request."
+msgstr ""
+
+#: theme/template-parts/content/content-single.php:32
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: theme/template-parts/layout/header-content.php:19
+msgid "Main Navigation"
+msgstr ""
+
+#: theme/template-parts/layout/header-content.php:20
+msgid "Menu"
+msgstr ""
+
+#: theme/template-parts/layout/footer-content.php:30
+msgid "Column 1"
+msgstr ""
+
+#: theme/template-parts/layout/footer-content.php:31
+msgid "Column 2"
+msgstr ""
+
+#: theme/template-parts/layout/footer-content.php:32
+msgid "Column 3"
+msgstr ""
+
+#: theme/template-parts/layout/footer-content.php:33
+msgid "Column 4"
+msgstr ""
+
+#: theme/template-parts/layout/footer-content.php:58
+msgid "All rights reserved."
+msgstr ""
+
+#: theme/inc/template-tags.php:41
+msgid "Posted by"
+msgstr ""
+
+#: theme/inc/template-tags.php:54
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: theme/inc/template-tags.php:71
+#: theme/inc/template-tags.php:121
+msgid ", "
+msgstr ""
+
+#: theme/inc/template-tags.php:75
+#: theme/inc/template-tags.php:125
+msgid "Posted in"
+msgstr ""
+
+#: theme/inc/template-tags.php:81
+#: theme/inc/template-tags.php:131
+msgid "Tags:"
+msgstr ""
+
+#: theme/inc/template-tags.php:97
+#: theme/inc/template-tags.php:147
+#: theme/template-parts/content/content-page.php:46
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: theme/inc/template-tags.php:231
+msgid "Newer posts"
+msgstr ""
+
+#: theme/inc/template-tags.php:232
+msgid "Older posts"
+msgstr ""
+
+#: theme/inc/template-functions.php:36
+msgid "Category Archives: "
+msgstr ""
+
+#: theme/inc/template-functions.php:38
+msgid "Tag Archives: "
+msgstr ""
+
+#: theme/inc/template-functions.php:40
+msgid "Author Archives: "
+msgstr ""
+
+#: theme/inc/template-functions.php:42
+msgid "Yearly Archives: "
+msgstr ""
+
+#: theme/inc/template-functions.php:42
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+#: theme/inc/template-functions.php:44
+msgid "Monthly Archives: "
+msgstr ""
+
+#: theme/inc/template-functions.php:44
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+#: theme/inc/template-functions.php:46
+msgid "Daily Archives: "
+msgstr ""
+
+#: theme/inc/template-functions.php:50
+#: theme/inc/template-functions.php:56
+msgid "%s Archives"
+msgstr ""
+
+#: theme/inc/template-functions.php:60
+msgid "Archives:"
+msgstr ""
+
+#: theme/inc/template-functions.php:88
+msgid "Continue reading %s"
+msgstr ""
+
+#: theme/inc/template-functions.php:114
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: theme/inc/template-functions.php:116
+msgid "Your comment is awaiting moderation. This is a preview; your comment will be visible after it has been approved."
+msgstr ""
+
+#: theme/inc/template-functions.php:136
+msgid "%s <span class=\"says\">says:</span>"
+msgstr ""
+
+#: theme/inc/template-functions.php:150
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: theme/inc/template-functions.php:157
+msgid "Edit"
+msgstr ""
