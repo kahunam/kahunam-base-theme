@@ -32,7 +32,7 @@
 		<?php endif; ?>
 	</header><!-- .page-header -->
 
-	<div <?php kahu_content_class( 'page-content' ); ?>>
+	<div class="page-content">
 		<?php
 		if ( is_home() && current_user_can( 'publish_posts' ) ) :
 			?>

@@ -23,7 +23,7 @@
 
 	<?php kahu_post_thumbnail(); ?>
 
-	<div <?php kahu_content_class( 'entry-content' ); ?>>
+	<div class="entry-content">
 		<?php
 		the_content();
 
@@ -43,7 +43,7 @@
 				sprintf(
 					wp_kses(
 						/* translators: %s: Name of current post. Only visible to screen readers. */
-						__( 'Edit <span class="sr-only">%s</span>', 'kahu' ),
+						__( 'Edit <span class="screen-reader-text">%s</span>', 'kahu' ),
 						array(
 							'span' => array(
 								'class' => array(),

@@ -26,7 +26,7 @@
 
 	<?php kahu_post_thumbnail(); ?>
 
-	<div <?php kahu_content_class( 'entry-content' ); ?>>
+	<div class="entry-content">
 		<?php
 		the_content();
 

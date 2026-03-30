@@ -24,20 +24,19 @@ get_header();
 					the_post_navigation(
 						array(
 							'next_text' => '<span aria-hidden="true">' . __( 'Next Post', 'kahu' ) . '</span> ' .
-								'<span class="sr-only">' . __( 'Next post:', 'kahu' ) . '</span> <br/>' .
+								'<span class="screen-reader-text">' . __( 'Next post:', 'kahu' ) . '</span> <br/>' .
 								'<span>%title</span>',
 							'prev_text' => '<span aria-hidden="true">' . __( 'Previous Post', 'kahu' ) . '</span> ' .
-								'<span class="sr-only">' . __( 'Previous post:', 'kahu' ) . '</span> <br/>' .
+								'<span class="screen-reader-text">' . __( 'Previous post:', 'kahu' ) . '</span> <br/>' .
 								'<span>%title</span>',
 						)
 					);
 				}
 
-				// If comments are open, or we have at least one comment, load
-				// the comment template.
-				if ( comments_open() || get_comments_number() ) {
-					comments_template();
-				}
+				// Uncomment below to enable comments.
+				// if ( comments_open() || get_comments_number() ) {
+				// 	comments_template();
+				// }
 
 				// End the loop.
 			endwhile;
