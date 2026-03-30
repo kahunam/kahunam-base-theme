@@ -1,8 +1,8 @@
-# Kahunam Base Theme — Tailwind Removal + Verbose Framework
+# Kahunam Base Theme — Tailwind Removal + Kahunam CSS Framework
 
 ## Goal
 
-Strip the `_tw`-based WordPress theme to a minimal, zero-build-step base theme powered by the Verbose Framework CSS. No Tailwind, no PostCSS, no esbuild, no npm build pipeline.
+Strip the `_tw`-based WordPress theme to a minimal, zero-build-step base theme powered by the Kahunam CSS Framework CSS. No Tailwind, no PostCSS, no esbuild, no npm build pipeline.
 
 ---
 
@@ -43,7 +43,7 @@ Strip the `_tw`-based WordPress theme to a minimal, zero-build-step base theme p
 
 ### `theme/css/framework.css`
 
-Copy of Verbose Framework v1.0 from `kahunam-tools/css-framework/framework.css`. Self-contained in the theme — no external dependency.
+Copy of Kahunam CSS Framework v1.0 from `kahunam-tools/css-framework/framework.css`. Self-contained in the theme — no external dependency.
 
 ### `theme/css/theme.css`
 
@@ -166,7 +166,7 @@ Columns collapse via framework's built-in responsive rules (4 cols -> 2 at 1024p
 ### Content templates
 
 - `index.php`, `single.php`, `page.php`, `archive.php`, `search.php`, `404.php`
-- Clean up: replace any Tailwind classes, use Verbose Framework classes where needed
+- Clean up: replace any Tailwind classes, use Kahunam CSS Framework classes where needed
 - `single.php` and `page.php`: comments_template() call commented out by default with a note saying "Uncomment to enable comments"
 
 ### `theme/comments.php`
@@ -177,7 +177,7 @@ Columns collapse via framework's built-in responsive rules (4 cols -> 2 at 1024p
 ### `theme/theme.json`
 
 - Keep for WordPress block editor color palette integration
-- Update if needed to match Verbose Framework variable colors
+- Update if needed to match Kahunam CSS Framework variable colors
 
 ---
 

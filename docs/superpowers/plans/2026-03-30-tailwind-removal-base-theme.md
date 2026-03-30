@@ -1,12 +1,12 @@
-# Kahunam Base Theme — Tailwind Removal + Verbose Framework Implementation Plan
+# Kahunam Base Theme — Tailwind Removal + Kahunam CSS Framework Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Strip the _tw WordPress theme of all Tailwind CSS and build tooling, replace with the Verbose Framework, and create a minimal base theme with a simple header (logo + mobile menu) and footer (logo/tagline + 4 nav columns + copyright).
+**Goal:** Strip the _tw WordPress theme of all Tailwind CSS and build tooling, replace with the Kahunam CSS Framework, and create a minimal base theme with a simple header (logo + mobile menu) and footer (logo/tagline + 4 nav columns + copyright).
 
-**Architecture:** Classic WordPress theme with zero build steps. CSS delivered via two static files: the Verbose Framework (utility classes) and a theme stylesheet (overrides + component styles). One vanilla JS file for mobile menu toggle. All Tailwind-specific PHP code removed; templates updated to use Verbose Framework classes.
+**Architecture:** Classic WordPress theme with zero build steps. CSS delivered via two static files: the Kahunam CSS Framework (utility classes) and a theme stylesheet (overrides + component styles). One vanilla JS file for mobile menu toggle. All Tailwind-specific PHP code removed; templates updated to use Kahunam CSS Framework classes.
 
-**Tech Stack:** PHP (WordPress theme API), CSS (Verbose Framework custom properties + utilities), vanilla JavaScript.
+**Tech Stack:** PHP (WordPress theme API), CSS (Kahunam CSS Framework custom properties + utilities), vanilla JavaScript.
 
 ---
 
@@ -33,7 +33,7 @@
 
 | File | Responsibility |
 |------|---------------|
-| `theme/css/framework.css` | Verbose Framework v1.0 (copied from kahunam-tools) |
+| `theme/css/framework.css` | Kahunam CSS Framework v1.0 (copied from kahunam-tools) |
 | `theme/css/theme.css` | Variable overrides, `.screen-reader-text`, header/footer/mobile-menu styles |
 | `theme/js/navigation.js` | Mobile menu toggle (~15 lines) |
 | `theme/images/logo.svg` | Placeholder SVG logo |
@@ -58,7 +58,7 @@
 | `theme/template-parts/content/content-page.php` | Replace `kahu_content_class()` and `sr-only` |
 | `theme/template-parts/content/content-excerpt.php` | Replace `kahu_content_class()` call |
 | `theme/template-parts/content/content-none.php` | Replace `kahu_content_class()` call |
-| `theme/theme.json` | Update colors to match Verbose Framework defaults |
+| `theme/theme.json` | Update colors to match Kahunam CSS Framework defaults |
 
 ---
 
@@ -93,7 +93,7 @@ git commit -m "chore: remove Tailwind CSS, build tooling, and npm/composer depen
 
 ---
 
-## Task 2: Add Verbose Framework, theme CSS, navigation JS, and placeholder logo
+## Task 2: Add Kahunam CSS Framework, theme CSS, navigation JS, and placeholder logo
 
 **Files:**
 - Create: `theme/css/framework.css`
@@ -107,7 +107,7 @@ git commit -m "chore: remove Tailwind CSS, build tooling, and npm/composer depen
 mkdir -p theme/css theme/js theme/images
 ```
 
-- [ ] **Step 2: Copy Verbose Framework into theme**
+- [ ] **Step 2: Copy Kahunam CSS Framework into theme**
 
 ```bash
 cp /Users/scottdooley/Documents/GitHub/kahunam-tools/css-framework/framework.css theme/css/framework.css
@@ -118,7 +118,7 @@ cp /Users/scottdooley/Documents/GitHub/kahunam-tools/css-framework/framework.css
 ```css
 /* ============================================================
  *  Kahunam Base Theme — Project Overrides
- *  Override Verbose Framework variables and add theme-specific
+ *  Override Kahunam CSS Framework variables and add theme-specific
  *  component styles here.
  * ============================================================ */
 
@@ -395,7 +395,7 @@ cp /Users/scottdooley/Documents/GitHub/kahunam-tools/css-framework/framework.css
 
 ```bash
 git add theme/css/framework.css theme/css/theme.css theme/js/navigation.js theme/images/logo.svg
-git commit -m "feat: add Verbose Framework, theme CSS, navigation JS, and placeholder logo"
+git commit -m "feat: add Kahunam CSS Framework, theme CSS, navigation JS, and placeholder logo"
 ```
 
 ---
@@ -510,7 +510,7 @@ require get_template_directory() . '/inc/template-functions.php';
 
 ```bash
 git add theme/functions.php
-git commit -m "feat: rewrite functions.php — remove Tailwind, add Verbose Framework enqueues and footer nav menus"
+git commit -m "feat: rewrite functions.php — remove Tailwind, add Kahunam CSS Framework enqueues and footer nav menus"
 ```
 
 ---
@@ -527,7 +527,7 @@ git commit -m "feat: rewrite functions.php — remove Tailwind, add Verbose Fram
 /*!
 Theme Name: Kahunam Base
 Theme URI: https://kahunam.com
-Description: Minimal WordPress base theme powered by the Verbose Framework CSS.
+Description: Minimal WordPress base theme powered by the Kahunam CSS Framework CSS.
 Version: 0.1.0
 Author: Kahunam
 Author URI: https://kahunam.com
@@ -587,7 +587,7 @@ License URI: LICENSE
 
 ```bash
 git add theme/style.css theme/theme.json
-git commit -m "chore: update style.css header and theme.json colors to match Verbose Framework"
+git commit -m "chore: update style.css header and theme.json colors to match Kahunam CSS Framework"
 ```
 
 ---
@@ -716,7 +716,7 @@ git commit -m "chore: update style.css header and theme.json colors to match Ver
 
 ```bash
 git add theme/template-parts/layout/header-content.php theme/template-parts/layout/footer-content.php
-git commit -m "feat: rewrite header and footer templates with Verbose Framework classes"
+git commit -m "feat: rewrite header and footer templates with Kahunam CSS Framework classes"
 ```
 
 ---
