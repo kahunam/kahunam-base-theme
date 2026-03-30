@@ -4,49 +4,59 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package _test
+ * @package kahu
  */
 
 ?>
 
-<footer id="colophon">
+<footer id="colophon" class="site-footer">
+	<div class="content-container align-container-center">
 
-	<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-		<aside role="complementary" aria-label="<?php esc_attr_e( 'Footer', 'kahu' ); ?>">
-			<?php dynamic_sidebar( 'sidebar-1' ); ?>
-		</aside>
-	<?php endif; ?>
-
-	<?php if ( has_nav_menu( 'menu-2' ) ) : ?>
-		<nav aria-label="<?php esc_attr_e( 'Footer Menu', 'kahu' ); ?>">
+		<div class="margin-bottom-large">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo link-unstyled" rel="home" aria-label="<?php bloginfo( 'name' ); ?>">
+				<?php echo file_get_contents( get_template_directory() . '/images/logo.svg' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents ?>
+			</a>
 			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-2',
-					'menu_class'     => 'footer-menu',
-					'depth'          => 1,
-				)
+			$kahu_description = get_bloginfo( 'description', 'display' );
+			if ( $kahu_description || is_customize_preview() ) :
+				?>
+				<p class="footer-tagline"><?php echo esc_html( $kahu_description ); ?></p>
+			<?php endif; ?>
+		</div>
+
+		<div class="footer-nav-columns margin-bottom-large">
+			<?php
+			$footer_menus = array(
+				'footer-1' => __( 'Column 1', 'kahu' ),
+				'footer-2' => __( 'Column 2', 'kahu' ),
+				'footer-3' => __( 'Column 3', 'kahu' ),
+				'footer-4' => __( 'Column 4', 'kahu' ),
 			);
-			?>
-		</nav>
-	<?php endif; ?>
 
-	<div>
-		<?php
-		$kahu_blog_info = get_bloginfo( 'name' );
-		if ( ! empty( $kahu_blog_info ) ) :
+			foreach ( $footer_menus as $location => $label ) :
+				if ( has_nav_menu( $location ) ) :
+					?>
+					<div class="footer-nav-column">
+						<h3><?php echo esc_html( wp_get_nav_menu_name( $location ) ); ?></h3>
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => $location,
+								'depth'          => 1,
+								'fallback_cb'    => false,
+							)
+						);
+						?>
+					</div>
+					<?php
+				endif;
+			endforeach;
 			?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>,
-			<?php
-		endif;
+		</div>
 
-		/* translators: 1: WordPress link, 2: WordPress. */
-		printf(
-			'<a href="%1$s">proudly powered by %2$s</a>.',
-			esc_url( __( 'https://wordpress.org/', 'kahu' ) ),
-			'WordPress'
-		);
-		?>
+		<div class="footer-copyright">
+			&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'kahu' ); ?>
+		</div>
+
 	</div>
-
 </footer><!-- #colophon -->
