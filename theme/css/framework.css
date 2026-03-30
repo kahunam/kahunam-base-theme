@@ -1,0 +1,1021 @@
+/* ============================================================
+ *  VERBOSE FRAMEWORK v1.0
+ *  Self-contained semantic utility CSS. No build tools.
+ * ------------------------------------------------------------
+ *  PHILOSOPHY — class names are always written in full.
+ *  Never abbreviated. Markup should read like plain English.
+ *    .padding-large  not .p-4   |  .flex-direction-column  not .flex-col
+ *
+ *  SIZING SCALE — one scale used everywhere. No magic numbers.
+ *    extra-small · small · medium · large · extra-large · giant
+ *  Applies to: spacing, font sizes, border-radius, icons, gaps.
+ *  All font sizes use clamp() — fluid between mobile and desktop.
+ *
+ *  OVERRIDES — everything is a CSS custom property in :root.
+ *  Redefine variables per-project; never touch framework rules.
+ *
+ *  SECTIONS
+ *  01 Variables  02 Reset  03 Containers  04 Flex  05 Grid
+ *  06 Headings   07 Font sizes  08 Font styles  09 Spacing
+ *  10 Colors  11 Display/position  11B Radius  11C Z-index
+ *  11D Card  11E Icons  12 Forms  13 Messages  14 Buttons
+ *  15 Links  16 Tag menu  16B Vertical link list  17 Responsive
+ * ============================================================ */
+
+
+/* ==========================================================================
+   SECTION 01 — CSS CUSTOM PROPERTIES
+   ========================================================================== */
+
+:root {
+
+  /* — Container widths — */
+  --container-width-site: 1440px;
+  --container-width-content: 1300px;
+  --container-width-small: 860px;
+
+  /* — Site padding (applied to containers — clamp so it breathes on small screens) — */
+  --container-padding-horizontal: clamp(1rem, 3vw, 2rem);
+
+  /* — Grid variables (override per component with style attribute) — */
+  --grid-column-min-width: 280px;
+  --grid-gap-size: 1.5rem;
+
+  /* — Spacing scale — */
+  --spacing-extra-small: 0.25rem;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+  --spacing-extra-large: 4rem;
+  --spacing-giant: 8rem;
+
+  /* — Font families — */
+  --font-family-header: Georgia, 'Times New Roman', serif;
+  --font-family-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-family-eyebrow: system-ui, -apple-system, sans-serif;
+  --font-family-code: ui-monospace, 'Courier New', Courier, monospace;
+  --font-family-meta: system-ui, sans-serif;
+
+  /* — Font weights — */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* — Font sizes (clamp: min, fluid, max) — */
+  --font-size-base:        clamp(1rem,    0.25vw + 0.938rem, 1.125rem);
+  --font-size-extra-small: clamp(0.625rem, 0.2vw + 0.575rem, 0.75rem);
+  --font-size-small:       clamp(0.75rem,  0.25vw + 0.688rem, 0.875rem);
+  --font-size-medium:      clamp(1rem,    0.25vw + 0.938rem, 1.125rem);
+  --font-size-large:       clamp(1.125rem, 0.75vw + 0.938rem, 1.5rem);
+  --font-size-extra-large: clamp(1.5rem,   2vw + 1rem,        2.5rem);
+  --font-size-giant:       clamp(2.5rem,   4vw + 1.5rem,      5rem);
+
+  /* — Heading sizes — */
+  --font-size-heading-one:   clamp(2rem,   3.5vw + 1.125rem, 3.5rem);
+  --font-size-heading-two:   clamp(1.5rem, 2.5vw + 0.875rem, 2.5rem);
+  --font-size-heading-three: clamp(1.25rem, 1.75vw + 0.75rem, 1.875rem);
+  --font-size-heading-four:  clamp(1.125rem, 1.25vw + 0.75rem, 1.5rem);
+  --font-size-heading-five:  clamp(1rem,   0.75vw + 0.75rem,  1.25rem);
+  --font-size-heading-six:   clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+
+  /* — Icon sizes (SVG/PNG — sets width and height) — */
+  --icon-size-extra-small: 16px;
+  --icon-size-small:       20px;
+  --icon-size-medium:      28px;
+  --icon-size-large:       40px;
+  --icon-size-extra-large: 56px;
+  --icon-size-giant:       80px;
+
+  /* — Brand colors — */
+  --color-background: #ffffff;
+  --color-foreground: #121212;
+  --color-primary: #052962;
+  --color-accent: #c70000;
+  --color-border: #dcdcdc;
+  --color-muted: #767676;
+  --color-subtle-background: #f6f6f6;
+
+  /* — Status colors — */
+  --color-success:             #2e7d32;
+  --color-success-text:        #1b5e20;
+  --color-success-background:  #e8f5e9;
+
+  --color-failed:              #c62828;
+  --color-failed-text:         #b71c1c;
+  --color-failed-background:   #ffebee;
+
+  --color-warning:             #e65100;
+  --color-warning-text:        #bf360c;
+  --color-warning-background:  #fff3e0;
+
+  --color-information:         #0277bd;
+  --color-information-text:    #01579b;
+  --color-information-background: #e1f5fe;
+
+  /* — Border radius — */
+  --border-radius-extra-small: 2px;
+  --border-radius-small:       4px;
+  --border-radius-medium:      8px;
+  --border-radius-large:       12px;
+  --border-radius-extra-large: 20px;
+  --border-radius-giant:       32px;
+  --border-radius-pill:        9999px;
+
+  /* — Z-index scale — */
+  --z-index-zero:  0;
+  --z-index-one:   1;
+  --z-index-two:   2;
+  --z-index-three: 3;
+  --z-index-four:  4;
+  --z-index-five:  5;
+
+  /* — Transitions — */
+  --transition-speed-base: 0.2s ease;
+
+  /* — Vertical link list — */
+  --vertical-link-list-gap:        0.4em;
+  --vertical-link-list-font-size:  var(--font-size-small);
+  --vertical-link-list-color:      var(--color-foreground);
+  --vertical-link-list-hover-color: var(--color-accent);
+
+  /* — Tag menu — */
+  --tag-menu-gap:          0.25em;
+  --tag-item-padding:      0.2em 0.65em;
+  --tag-item-font-size:    var(--font-size-extra-small);
+  --tag-item-font-weight:  var(--font-weight-semibold);
+  --tag-item-border-radius: var(--border-radius-pill);
+  --tag-item-color:        var(--color-foreground);
+  --tag-item-background:   var(--color-subtle-background);
+  --tag-item-border-color: var(--color-border);
+
+  /* — Form field (normal) — */
+  --form-field-padding:            0.625rem 0.875rem;
+  --form-field-color:              var(--color-foreground);
+  --form-field-background:         var(--color-background);
+  --form-field-border-color:       var(--color-border);
+  --form-field-placeholder-color:  var(--color-muted);
+  --form-field-focus-border-color: var(--color-primary);
+  --form-field-focus-shadow:       rgba(5, 41, 98, 0.12);
+  --form-label-color:              var(--color-foreground);
+
+  /* — Form field (inverse) — */
+  --form-field-inverse-color:              #ffffff;
+  --form-field-inverse-background:         transparent;
+  --form-field-inverse-border-color:       rgba(255, 255, 255, 0.35);
+  --form-field-inverse-placeholder-color:  rgba(255, 255, 255, 0.55);
+  --form-field-inverse-focus-border-color: rgba(255, 255, 255, 0.8);
+  --form-field-inverse-focus-shadow:       rgba(255, 255, 255, 0.15);
+  --form-label-inverse-color:              #ffffff;
+  --form-hint-color:                       var(--color-muted);
+  --form-hint-inverse-color:               rgba(255, 255, 255, 0.6);
+
+  /* — Form submit button (normal) — */
+  --form-submit-color:            #ffffff;
+  --form-submit-background:       var(--color-primary);
+  --form-submit-border-color:     var(--color-primary);
+  --form-submit-hover-background: #031d47;
+  --form-submit-hover-border:     #031d47;
+
+  /* — Form submit button (inverse) — */
+  --form-submit-inverse-color:            var(--color-primary);
+  --form-submit-inverse-background:       #ffffff;
+  --form-submit-inverse-border-color:     #ffffff;
+  --form-submit-inverse-hover-background: rgba(255, 255, 255, 0.9);
+  --form-submit-inverse-hover-border:     rgba(255, 255, 255, 0.9);
+}
+
+
+/* ==========================================================================
+   SECTION 02 — RESET AND BASE
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  line-height: 1.6;
+}
+
+img, video, svg { max-width: 100%; height: auto; display: block; }
+ul, ol { list-style: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+input, textarea, select { font: inherit; }
+
+
+/* ==========================================================================
+   SECTION 03 — CONTAINERS AND LAYOUT WRAPPERS
+   ========================================================================== */
+
+.full-width {
+  width: 100%;
+}
+
+.content-container {
+  width: 100%;
+  max-width: var(--container-width-content);
+  padding-left: var(--container-padding-horizontal);
+  padding-right: var(--container-padding-horizontal);
+}
+
+.small-container {
+  width: 100%;
+  max-width: var(--container-width-small);
+  padding-left: var(--container-padding-horizontal);
+  padding-right: var(--container-padding-horizontal);
+}
+
+.align-container-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ==========================================================================
+   SECTION 04 — FLEX UTILITIES
+   ========================================================================== */
+
+.flex         { display: flex; }
+.flex-inline  { display: inline-flex; }
+
+.flex-direction-row            { flex-direction: row; }
+.flex-direction-row-reverse    { flex-direction: row-reverse; }
+.flex-direction-column         { flex-direction: column; }
+.flex-direction-column-reverse { flex-direction: column-reverse; }
+
+.flex-wrap-enabled  { flex-wrap: wrap; }
+.flex-wrap-disabled { flex-wrap: nowrap; }
+
+.flex-justify-content-start         { justify-content: flex-start; }
+.flex-justify-content-end           { justify-content: flex-end; }
+.flex-justify-content-center        { justify-content: center; }
+.flex-justify-content-space-between { justify-content: space-between; }
+.flex-justify-content-space-around  { justify-content: space-around; }
+.flex-justify-content-space-evenly  { justify-content: space-evenly; }
+
+.flex-align-items-start    { align-items: flex-start; }
+.flex-align-items-end      { align-items: flex-end; }
+.flex-align-items-center   { align-items: center; }
+.flex-align-items-baseline { align-items: baseline; }
+.flex-align-items-stretch  { align-items: stretch; }
+
+.flex-align-self-start   { align-self: flex-start; }
+.flex-align-self-end     { align-self: flex-end; }
+.flex-align-self-center  { align-self: center; }
+.flex-align-self-stretch { align-self: stretch; }
+
+.flex-grow-enabled    { flex: 1; }
+.flex-shrink-disabled { flex-shrink: 0; }
+
+
+/* ==========================================================================
+   SECTION 05 — GRID UTILITIES
+   ========================================================================== */
+
+.grid { display: grid; }
+
+/* Responsive auto grids — override --grid-column-min-width and --grid-gap-size via style="" */
+.grid-auto-fit-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-column-min-width, 280px), 1fr));
+  gap: var(--grid-gap-size, 1.5rem);
+}
+
+.grid-auto-fill-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-column-min-width, 280px), 1fr));
+  gap: var(--grid-gap-size, 1.5rem);
+}
+
+/* Fixed column grids */
+.grid-one-column    { grid-template-columns: repeat(1, 1fr); }
+.grid-two-columns   { grid-template-columns: repeat(2, 1fr); }
+.grid-three-columns { grid-template-columns: repeat(3, 1fr); }
+.grid-four-columns  { grid-template-columns: repeat(4, 1fr); }
+.grid-six-columns   { grid-template-columns: repeat(6, 1fr); }
+
+/* Column span helpers */
+.grid-column-span-one   { grid-column: span 1; }
+.grid-column-span-two   { grid-column: span 2; }
+.grid-column-span-three { grid-column: span 3; }
+.grid-column-span-four  { grid-column: span 4; }
+.grid-column-span-full  { grid-column: 1 / -1; }
+
+/* Row span helpers */
+.grid-row-span-two   { grid-row: span 2; }
+.grid-row-span-three { grid-row: span 3; }
+
+/* Named layout templates */
+.grid-layout-two-thirds-one-third {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--grid-gap-size, 1.5rem);
+}
+
+.grid-layout-one-third-two-thirds {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--grid-gap-size, 1.5rem);
+}
+
+.grid-layout-content-then-sidebar {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--grid-gap-size, 1.5rem);
+}
+
+.grid-layout-sidebar-then-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--grid-gap-size, 1.5rem);
+}
+
+/* Gap overrides — defined here so .gap-* wins over layout template defaults above */
+.gap-extra-small { gap: var(--spacing-extra-small); }
+.gap-small       { gap: var(--spacing-small); }
+.gap-medium      { gap: var(--spacing-medium); }
+.gap-large       { gap: var(--spacing-large); }
+.gap-extra-large { gap: var(--spacing-extra-large); }
+
+
+/* ==========================================================================
+   SECTION 06 — HEADINGS
+   ========================================================================== */
+
+h1, .h1 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-heading-one);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+h2, .h2 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-heading-two);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h3, .h3 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-heading-three);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h4, .h4 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-heading-four);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+}
+
+h5, .h5 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-heading-five);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+h6, .h6 {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-heading-six);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
+
+/* ==========================================================================
+   SECTION 07 — FONT SIZE CLASSES
+   ========================================================================== */
+
+.font-size-extra-small { font-size: var(--font-size-extra-small); }
+.font-size-small       { font-size: var(--font-size-small); }
+.font-size-medium      { font-size: var(--font-size-medium); }
+.font-size-large       { font-size: var(--font-size-large); }
+.font-size-extra-large { font-size: var(--font-size-extra-large); }
+.font-size-giant       { font-size: var(--font-size-giant); }
+
+
+/* ==========================================================================
+   SECTION 08 — FONT STYLE BASES
+   ========================================================================== */
+
+.font-style-header-base {
+  font-family: var(--font-family-header);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.font-style-body-base {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.font-style-eyebrow-base {
+  font-family: var(--font-family-eyebrow);
+  font-size: var(--font-size-extra-small);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.font-style-code-base {
+  font-family: var(--font-family-code);
+  font-size: 0.875em;
+  background-color: var(--color-subtle-background);
+  padding: 0.125em 0.375em;
+  border-radius: var(--border-radius-small);
+}
+
+.font-style-blockquote-base {
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-large);
+  font-style: italic;
+  font-weight: var(--font-weight-light);
+  line-height: 1.45;
+  padding-left: var(--spacing-large);
+  border-left: 4px solid var(--color-primary);
+  color: var(--color-muted);
+}
+
+.font-style-subtitle-base {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-light);
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+.font-style-meta-base {
+  font-family: var(--font-family-meta);
+  font-size: var(--font-size-extra-small);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+
+/* ==========================================================================
+   SECTION 09 — SPACING UTILITIES
+   ========================================================================== */
+
+/* Padding — all sides */
+.padding-extra-small { padding: var(--spacing-extra-small); }
+.padding-small       { padding: var(--spacing-small); }
+.padding-medium      { padding: var(--spacing-medium); }
+.padding-large       { padding: var(--spacing-large); }
+.padding-extra-large { padding: var(--spacing-extra-large); }
+.padding-giant       { padding: var(--spacing-giant); }
+
+/* Padding — vertical */
+.padding-vertical-extra-small { padding-top: var(--spacing-extra-small); padding-bottom: var(--spacing-extra-small); }
+.padding-vertical-small       { padding-top: var(--spacing-small);       padding-bottom: var(--spacing-small); }
+.padding-vertical-medium      { padding-top: var(--spacing-medium);      padding-bottom: var(--spacing-medium); }
+.padding-vertical-large       { padding-top: var(--spacing-large);       padding-bottom: var(--spacing-large); }
+.padding-vertical-extra-large { padding-top: var(--spacing-extra-large); padding-bottom: var(--spacing-extra-large); }
+.padding-vertical-giant       { padding-top: var(--spacing-giant);       padding-bottom: var(--spacing-giant); }
+
+/* Padding — horizontal */
+.padding-horizontal-small       { padding-left: var(--spacing-small);       padding-right: var(--spacing-small); }
+.padding-horizontal-medium      { padding-left: var(--spacing-medium);      padding-right: var(--spacing-medium); }
+.padding-horizontal-large       { padding-left: var(--spacing-large);       padding-right: var(--spacing-large); }
+.padding-horizontal-extra-large { padding-left: var(--spacing-extra-large); padding-right: var(--spacing-extra-large); }
+
+/* Margin — bottom (most common pattern) */
+.margin-bottom-extra-small { margin-bottom: var(--spacing-extra-small); }
+.margin-bottom-small       { margin-bottom: var(--spacing-small); }
+.margin-bottom-medium      { margin-bottom: var(--spacing-medium); }
+.margin-bottom-large       { margin-bottom: var(--spacing-large); }
+.margin-bottom-extra-large { margin-bottom: var(--spacing-extra-large); }
+.margin-bottom-giant       { margin-bottom: var(--spacing-giant); }
+
+/* Margin — top */
+.margin-top-extra-small { margin-top: var(--spacing-extra-small); }
+.margin-top-small       { margin-top: var(--spacing-small); }
+.margin-top-medium      { margin-top: var(--spacing-medium); }
+.margin-top-large       { margin-top: var(--spacing-large); }
+.margin-top-extra-large { margin-top: var(--spacing-extra-large); }
+
+/* Margin — auto (for alignment within flex/grid) */
+.margin-top-auto   { margin-top: auto; }
+.margin-left-auto  { margin-left: auto; }
+.margin-right-auto { margin-right: auto; }
+
+
+/* ==========================================================================
+   SECTION 10 — COLOR AND BACKGROUND UTILITIES
+   ========================================================================== */
+
+.background-color-white          { background-color: #ffffff; }
+.background-color-subtle         { background-color: var(--color-subtle-background); }
+.background-color-dark           { background-color: var(--color-foreground); }
+.background-color-primary        { background-color: var(--color-primary); }
+.background-color-accent         { background-color: var(--color-accent); }
+
+.text-color-default     { color: var(--color-foreground); }
+.text-color-muted       { color: var(--color-muted); }
+.text-color-white       { color: #ffffff; }
+.text-color-primary     { color: var(--color-primary); }
+.text-color-accent      { color: var(--color-accent); }
+.text-color-success     { color: var(--color-success-text); }
+.text-color-failed      { color: var(--color-failed-text); }
+.text-color-warning     { color: var(--color-warning-text); }
+.text-color-information { color: var(--color-information-text); }
+
+.text-align-left   { text-align: left; }
+.text-align-center { text-align: center; }
+.text-align-right  { text-align: right; }
+
+.font-weight-light    { font-weight: var(--font-weight-light); }
+.font-weight-regular  { font-weight: var(--font-weight-regular); }
+.font-weight-medium   { font-weight: var(--font-weight-medium); }
+.font-weight-semibold { font-weight: var(--font-weight-semibold); }
+.font-weight-bold     { font-weight: var(--font-weight-bold); }
+.font-weight-black    { font-weight: var(--font-weight-black); }
+
+.border-top-subtle    { border-top: 1px solid var(--color-border); }
+.border-bottom-subtle { border-bottom: 1px solid var(--color-border); }
+.border-left-subtle   { border-left: 1px solid var(--color-border); }
+.border-right-subtle  { border-right: 1px solid var(--color-border); }
+.border-top-primary   { border-top: 3px solid var(--color-primary); }
+.border-top-accent    { border-top: 3px solid var(--color-accent); }
+.border-top-thick-primary  { border-top: 4px solid var(--color-primary); }
+.border-left-primary  { border-left: 4px solid var(--color-primary); }
+.border-left-accent   { border-left: 4px solid var(--color-accent); }
+
+
+/* ==========================================================================
+   SECTION 11 — DISPLAY AND POSITION UTILITIES
+   ========================================================================== */
+
+.display-none         { display: none; }
+.display-block        { display: block; }
+.display-inline       { display: inline; }
+.display-inline-block { display: inline-block; }
+
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-sticky   { position: sticky; top: 0; z-index: 100; }
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+
+.width-full  { width: 100%; }
+.height-full { height: 100%; }
+
+/* Aspect ratio helpers for media */
+.aspect-ratio-sixteen-nine { aspect-ratio: 16 / 9; }
+.aspect-ratio-four-three   { aspect-ratio: 4 / 3; }
+.aspect-ratio-square       { aspect-ratio: 1 / 1; }
+.aspect-ratio-three-two    { aspect-ratio: 3 / 2; }
+
+.image-cover { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+
+/* ==========================================================================
+   SECTION 11B — BORDER RADIUS
+   ========================================================================== */
+
+.border-radius-extra-small { border-radius: var(--border-radius-extra-small); }
+.border-radius-small       { border-radius: var(--border-radius-small); }
+.border-radius-medium      { border-radius: var(--border-radius-medium); }
+.border-radius-large       { border-radius: var(--border-radius-large); }
+.border-radius-extra-large { border-radius: var(--border-radius-extra-large); }
+.border-radius-giant       { border-radius: var(--border-radius-giant); }
+.border-radius-pill        { border-radius: var(--border-radius-pill); }
+
+
+/* ==========================================================================
+   SECTION 11C — Z-INDEX
+   ========================================================================== */
+
+.z-index-zero  { z-index: var(--z-index-zero); }
+.z-index-one   { z-index: var(--z-index-one); }
+.z-index-two   { z-index: var(--z-index-two); }
+.z-index-three { z-index: var(--z-index-three); }
+.z-index-four  { z-index: var(--z-index-four); }
+.z-index-five  { z-index: var(--z-index-five); }
+
+
+/* ==========================================================================
+   SECTION 11D — CARD UTILITY
+   ========================================================================== */
+
+/*
+ * .card-base — flex column container, full width and height.
+ * Use .margin-top-auto on any child to push it to the bottom of the card.
+ * Example: a button or meta row at the bottom of a variable-height card.
+ */
+.card-base {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ==========================================================================
+   SECTION 11E — ICON UTILITIES
+   ========================================================================== */
+
+/* SVG/PNG icons — sets width + height via variables. For font icons, override font-size in your project styles. */
+
+.icon-extra-small { width: var(--icon-size-extra-small); height: var(--icon-size-extra-small); flex-shrink: 0; display: inline-block; }
+.icon-small       { width: var(--icon-size-small);       height: var(--icon-size-small);       flex-shrink: 0; display: inline-block; }
+.icon-medium      { width: var(--icon-size-medium);      height: var(--icon-size-medium);      flex-shrink: 0; display: inline-block; }
+.icon-large       { width: var(--icon-size-large);       height: var(--icon-size-large);       flex-shrink: 0; display: inline-block; }
+.icon-extra-large { width: var(--icon-size-extra-large); height: var(--icon-size-extra-large); flex-shrink: 0; display: inline-block; }
+.icon-giant       { width: var(--icon-size-giant);       height: var(--icon-size-giant);       flex-shrink: 0; display: inline-block; }
+
+
+/* ==========================================================================
+   SECTION 12 — FORMS
+   ========================================================================== */
+
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  margin-bottom: var(--spacing-medium);
+}
+
+.form-field-label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--form-label-color);
+}
+
+.form-field-label-inverse {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--form-label-inverse-color);
+}
+
+.form-field-hint {
+  font-size: var(--font-size-extra-small);
+  color: var(--form-hint-color);
+  margin-top: var(--spacing-extra-small);
+}
+
+.form-field-hint-inverse {
+  font-size: var(--font-size-extra-small);
+  color: var(--form-hint-inverse-color);
+  margin-top: var(--spacing-extra-small);
+}
+
+.form-field-input,
+.form-field-textarea,
+.form-field-select,
+.form-field-input-inverse,
+.form-field-textarea-inverse {
+  width: 100%;
+  padding: var(--form-field-padding);
+  font-size: var(--font-size-base);
+  color: var(--form-field-color);
+  background-color: var(--form-field-background);
+  border: 1px solid var(--form-field-border-color);
+  border-radius: var(--border-radius-medium);
+  transition: border-color var(--transition-speed-base), box-shadow var(--transition-speed-base);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-field-input::placeholder,
+.form-field-textarea::placeholder { color: var(--form-field-placeholder-color); }
+
+.form-field-input:focus,
+.form-field-textarea:focus,
+.form-field-select:focus {
+  border-color: var(--form-field-focus-border-color);
+  box-shadow: 0 0 0 3px var(--form-field-focus-shadow);
+}
+
+.form-field-textarea,
+.form-field-textarea-inverse { min-height: 120px; resize: vertical; }
+
+.form-field-input-inverse,
+.form-field-textarea-inverse {
+  color: var(--form-field-inverse-color);
+  background-color: var(--form-field-inverse-background);
+  border-color: var(--form-field-inverse-border-color);
+}
+
+.form-field-input-inverse::placeholder,
+.form-field-textarea-inverse::placeholder { color: var(--form-field-inverse-placeholder-color); }
+
+.form-field-input-inverse:focus,
+.form-field-textarea-inverse:focus {
+  border-color: var(--form-field-inverse-focus-border-color);
+  box-shadow: 0 0 0 3px var(--form-field-inverse-focus-shadow);
+}
+
+.form-submit-button,
+.form-submit-button-inverse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  transition: background-color var(--transition-speed-base), border-color var(--transition-speed-base), color var(--transition-speed-base);
+  text-decoration: none;
+}
+
+.form-submit-button {
+  background-color: var(--form-submit-background);
+  color: var(--form-submit-color);
+  border-color: var(--form-submit-border-color);
+}
+
+.form-submit-button:hover {
+  background-color: var(--form-submit-hover-background);
+  border-color: var(--form-submit-hover-border);
+  color: var(--form-submit-color);
+}
+
+.form-submit-button-inverse {
+  background-color: var(--form-submit-inverse-background);
+  color: var(--form-submit-inverse-color);
+  border-color: var(--form-submit-inverse-border-color);
+}
+
+.form-submit-button-inverse:hover {
+  background-color: var(--form-submit-inverse-hover-background);
+  border-color: var(--form-submit-inverse-hover-border);
+}
+
+
+/* ==========================================================================
+   SECTION 13 — STATUS MESSAGES
+   ========================================================================== */
+
+.message-success,
+.message-failed,
+.message-warning,
+.message-information {
+  padding: var(--spacing-medium) var(--spacing-large);
+  border-radius: var(--border-radius-medium);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  border-left: 4px solid currentColor;
+}
+
+.message-success     { background-color: var(--color-success-background);     color: var(--color-success); }
+.message-failed      { background-color: var(--color-failed-background);      color: var(--color-failed); }
+.message-warning     { background-color: var(--color-warning-background);     color: var(--color-warning); }
+.message-information { background-color: var(--color-information-background); color: var(--color-information); }
+
+
+/* ==========================================================================
+   SECTION 14 — BUTTONS
+   ========================================================================== */
+
+.button-light,
+.button-light-secondary,
+.button-dark,
+.button-dark-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-medium);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-speed-base), color var(--transition-speed-base), border-color var(--transition-speed-base);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.button-light {
+  background-color: #ffffff;
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.button-light:hover {
+  background-color: #eeeeee;
+  border-color: #999999;
+  color: var(--color-foreground);
+}
+
+.button-light-secondary {
+  background-color: transparent;
+  color: var(--color-foreground);
+  border-color: var(--color-foreground);
+}
+
+.button-light-secondary:hover {
+  background-color: var(--color-foreground);
+  color: #ffffff;
+}
+
+.button-dark {
+  background-color: var(--color-foreground);
+  color: #ffffff;
+  border-color: var(--color-foreground);
+}
+
+.button-dark:hover {
+  background-color: #2a2a2a;
+  border-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.button-dark-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.button-dark-secondary:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--color-foreground);
+}
+
+
+/* ==========================================================================
+   SECTION 15 — LINKS
+   ========================================================================== */
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color var(--transition-speed-base);
+}
+
+a:hover { color: var(--color-accent); }
+
+/* Link for use on dark backgrounds — white text, underline */
+.link-on-dark {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity var(--transition-speed-base);
+}
+
+.link-on-dark:hover { opacity: 0.75; color: #ffffff; }
+
+/* Strip all link styles — inherits color from parent */
+.link-unstyled { color: inherit; text-decoration: none; }
+.link-unstyled:hover { color: inherit; }
+
+
+/* ==========================================================================
+   SECTION 16 — TAG MENU
+   ========================================================================== */
+
+.tag-menu {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--tag-menu-gap);
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--tag-item-padding);
+  font-size: var(--tag-item-font-size);
+  font-weight: var(--tag-item-font-weight);
+  color: var(--tag-item-color);
+  background-color: var(--tag-item-background);
+  border: 1px solid var(--tag-item-border-color);
+  border-radius: var(--tag-item-border-radius);
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.tag-item-primary {
+  color: #ffffff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.tag-item-accent {
+  color: #ffffff;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.tag-item-outline {
+  color: var(--color-foreground);
+  background-color: transparent;
+  border-color: var(--color-border);
+}
+
+
+/* ==========================================================================
+   SECTION 16B — VERTICAL LINK LIST
+   ========================================================================== */
+
+.vertical-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vertical-link-list-gap);
+}
+
+.vertical-link-list a {
+  font-size: var(--vertical-link-list-font-size);
+  color: var(--vertical-link-list-color);
+  text-decoration: none;
+  transition: color var(--transition-speed-base);
+}
+
+.vertical-link-list a:hover {
+  color: var(--vertical-link-list-hover-color);
+}
+
+
+/* ==========================================================================
+   SECTION 17 — RESPONSIVE BREAKPOINTS
+   --------------------------------------------------------------------------
+   BREAKPOINT REFERENCE (CSS custom properties cannot be used in @media rules)
+     Wide / laptop:   max-width 1024px
+     Tablet:          max-width  768px
+     Mobile:          max-width  480px
+   --------------------------------------------------------------------------
+   SHOW / HIDE UTILITIES
+     .display-none-on-mobile     — hidden at ≤ 480px
+     .display-none-on-tablet     — hidden at ≤ 768px
+     .display-none-on-desktop    — hidden above 768px (mobile + tablet only)
+     .display-none-above-mobile  — hidden above 480px (mobile only)
+   ========================================================================== */
+
+/* — Visible on mobile + tablet only (hide on desktop) — */
+@media (min-width: 769px) {
+  .display-none-on-desktop { display: none; }
+}
+
+/* — Visible on mobile only (hide on tablet + desktop) — */
+@media (min-width: 481px) {
+  .display-none-above-mobile { display: none; }
+}
+
+@media (max-width: 1024px) {
+  .grid-layout-content-then-sidebar,
+  .grid-layout-sidebar-then-content {
+    grid-template-columns: 220px 1fr;
+  }
+  .grid-four-columns { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid-layout-two-thirds-one-third,
+  .grid-layout-one-third-two-thirds,
+  .grid-layout-content-then-sidebar,
+  .grid-layout-sidebar-then-content,
+  .grid-three-columns,
+  .grid-four-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-six-columns { grid-template-columns: repeat(3, 1fr); }
+
+  .flex-wrap-on-tablet           { flex-wrap: wrap; }
+  .flex-direction-column-on-tablet { flex-direction: column; }
+  .display-none-on-tablet        { display: none; }
+}
+
+@media (max-width: 480px) {
+  .grid-two-columns,
+  .grid-three-columns,
+  .grid-four-columns,
+  .grid-six-columns { grid-template-columns: repeat(2, 1fr); }
+
+  .display-none-on-mobile          { display: none; }
+  .flex-direction-column-on-mobile { flex-direction: column; }
+  .flex-wrap-on-mobile             { flex-wrap: wrap; }
+  .text-align-center-on-mobile     { text-align: center; }
+}

@@ -1,0 +1,239 @@
+/* ============================================================
+ *  Kahunam Base Theme — Project Overrides
+ *  Override Verbose Framework variables and add theme-specific
+ *  component styles here.
+ * ============================================================ */
+
+
+/* ==========================================================================
+   VARIABLE OVERRIDES
+   ========================================================================== */
+
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #121212;
+  --color-primary: #052962;
+  --color-accent: #c70000;
+}
+
+
+/* ==========================================================================
+   SCREEN READER TEXT (WordPress convention)
+   ========================================================================== */
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  clip-path: none;
+  color: #21759b;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
+
+
+/* ==========================================================================
+   SITE HEADER
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spacing-medium);
+  padding-bottom: var(--spacing-medium);
+}
+
+.site-logo svg {
+  height: 32px;
+  width: auto;
+}
+
+
+/* ==========================================================================
+   MOBILE MENU
+   ========================================================================== */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-small);
+}
+
+.menu-toggle svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Primary menu — horizontal on desktop */
+#primary-menu {
+  display: flex;
+  gap: var(--spacing-large);
+  list-style: none;
+}
+
+#primary-menu a {
+  color: var(--color-foreground);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-speed-base);
+}
+
+#primary-menu a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  #site-navigation .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-medium) var(--container-padding-horizontal);
+  }
+
+  #site-navigation.menu-open .menu {
+    display: block;
+  }
+
+  #primary-menu {
+    flex-direction: column;
+    gap: var(--spacing-medium);
+  }
+}
+
+
+/* ==========================================================================
+   SITE FOOTER
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--color-foreground);
+  color: #ffffff;
+  padding-top: var(--spacing-extra-large);
+  padding-bottom: var(--spacing-large);
+}
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color var(--transition-speed-base);
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+}
+
+.footer-logo svg {
+  height: 28px;
+  width: auto;
+}
+
+.footer-tagline {
+  font-size: var(--font-size-small);
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: var(--spacing-small);
+}
+
+.footer-nav-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-large);
+}
+
+.footer-nav-column h3 {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-extra-small);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--spacing-medium);
+}
+
+.footer-nav-column .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  list-style: none;
+}
+
+.footer-nav-column .menu a {
+  font-size: var(--font-size-small);
+}
+
+.footer-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: var(--spacing-medium);
+  font-size: var(--font-size-extra-small);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .footer-nav-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-nav-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================================
+   CONTENT LAYOUT
+   ========================================================================== */
+
+#primary {
+  max-width: var(--container-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-horizontal);
+  padding-right: var(--container-padding-horizontal);
+  padding-top: var(--spacing-extra-large);
+  padding-bottom: var(--spacing-extra-large);
+}
