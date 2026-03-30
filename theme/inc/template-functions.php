@@ -2,7 +2,7 @@
 /**
  * Functions which enhance the theme by hooking into WordPress
  *
- * @package _test
+ * @package kahu
  */
 
 /**
@@ -19,15 +19,11 @@ add_action( 'wp_head', 'kahu_pingback_header' );
  * Changes comment form default fields.
  *
  * @param array $defaults The default comment form arguments.
- *
  * @return array Returns the modified fields.
  */
 function kahu_comment_form_defaults( $defaults ) {
 	$comment_field = $defaults['comment_field'];
-
-	// Adjust height of comment form.
 	$defaults['comment_field'] = preg_replace( '/rows="\d+"/', 'rows="5"', $comment_field );
-
 	return $defaults;
 }
 add_filter( 'comment_form_defaults', 'kahu_comment_form_defaults' );
@@ -51,14 +47,12 @@ function kahu_get_the_archive_title() {
 	} elseif ( is_post_type_archive() ) {
 		$cpt   = get_post_type_object( get_queried_object()->name );
 		$title = sprintf(
-			/* translators: %s: Post type singular name */
 			esc_html__( '%s Archives', 'kahu' ),
 			$cpt->labels->singular_name
 		);
 	} elseif ( is_tax() ) {
 		$tax   = get_taxonomy( get_queried_object()->taxonomy );
 		$title = sprintf(
-			/* translators: %s: Taxonomy singular name */
 			esc_html__( '%s Archives', 'kahu' ),
 			$tax->labels->singular_name
 		);
@@ -84,17 +78,15 @@ function kahu_get_avatar_size() {
 }
 
 /**
- * Create the continue reading link
+ * Create the continue reading link.
  *
  * @param string $more_string The string shown within the more link.
  */
 function kahu_continue_reading_link( $more_string ) {
-
 	if ( ! is_admin() ) {
 		$continue_reading = sprintf(
-			/* translators: %s: Name of current post. */
 			wp_kses( __( 'Continue reading %s', 'kahu' ), array( 'span' => array( 'class' => array() ) ) ),
-			the_title( '<span class="sr-only">"', '"</span>', false )
+			the_title( '<span class="screen-reader-text">"', '"</span>', false )
 		);
 
 		$more_string = '<a href="' . esc_url( get_permalink() ) . '">' . $continue_reading . '</a>';
@@ -102,19 +94,11 @@ function kahu_continue_reading_link( $more_string ) {
 
 	return $more_string;
 }
-
-// Filter the excerpt more link.
 add_filter( 'excerpt_more', 'kahu_continue_reading_link' );
-
-// Filter the content more link.
 add_filter( 'the_content_more_link', 'kahu_continue_reading_link' );
 
 /**
  * Outputs a comment in the HTML5 format.
- *
- * This function overrides the default WordPress comment output in HTML5
- * format, adding the required class for Tailwind Typography. Based on the
- * `html5_comment()` function from WordPress core.
  *
  * @param WP_Comment $comment Comment to display.
  * @param array      $args    An array of arguments.
@@ -149,7 +133,6 @@ function kahu_html5_comment( $comment, $args, $depth ) {
 					}
 
 					printf(
-						/* translators: %s: Comment author link. */
 						wp_kses_post( __( '%s <span class="says">says:</span>', 'kahu' ) ),
 						sprintf( '<b class="fn">%s</b>', wp_kses_post( $comment_author ) )
 					);
@@ -164,7 +147,6 @@ function kahu_html5_comment( $comment, $args, $depth ) {
 						esc_attr( get_comment_time( 'c' ) ),
 						esc_html(
 							sprintf(
-							/* translators: 1: Comment date, 2: Comment time. */
 								__( '%1$s at %2$s', 'kahu' ),
 								get_comment_date( '', $comment ),
 								get_comment_time()
@@ -181,7 +163,7 @@ function kahu_html5_comment( $comment, $args, $depth ) {
 				<?php endif; ?>
 			</footer><!-- .comment-meta -->
 
-			<div <?php kahu_content_class( 'comment-content' ); ?>>
+			<div class="entry-content">
 				<?php comment_text(); ?>
 			</div><!-- .comment-content -->
 
