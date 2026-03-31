@@ -1,12 +1,8 @@
 <?php
 /**
- * The template for displaying all pages
+ * Template Name: Default
  *
- * This is the template that displays all pages by default. Please note that
- * this is the WordPress construct of pages: specifically, posts with a post
- * type of `page`.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Standard content width page template.
  *
  * @package kahu
  */
@@ -14,26 +10,14 @@
 get_header();
 ?>
 
-	<section id="primary">
-		<main id="main">
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				get_template_part( 'template-parts/content/content', 'page' );
-
-				// Uncomment below to enable comments.
-				// if ( comments_open() || get_comments_number() ) {
-				// 	comments_template();
-				// }
-
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
+	<main id="main" class="template-default">
+		<?php
+		while ( have_posts() ) :
+			the_post();
+			the_content();
+		endwhile;
+		?>
+	</main>
 
 <?php
 get_footer();

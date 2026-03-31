@@ -2,51 +2,33 @@
 /**
  * The template for displaying search results pages
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
  * @package kahu
  */
 
 get_header();
 ?>
 
-	<section id="primary">
-		<main id="main">
-
+	<main id="main">
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<?php
-				printf(
-					/* translators: 1: search result title. 2: search term. */
-					'<h1 class="page-title">%1$s <span>%2$s</span></h1>',
-					esc_html__( 'Search results for:', 'kahu' ),
-					get_search_query()
-				);
-				?>
-			</header><!-- .page-header -->
+				<h1><?php printf( esc_html__( 'Search results for: %s', 'kahu' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+			</header>
 
 			<?php
-			// Start the Loop.
 			while ( have_posts() ) :
 				the_post();
-				get_template_part( 'template-parts/content/content', 'excerpt' );
-
-				// End the loop.
+				the_content();
 			endwhile;
 
-			// Previous/next page navigation.
-			kahu_the_posts_navigation();
+			the_posts_pagination();
 
 		else :
-
-			// If no content is found, get the `content-none` template part.
-			get_template_part( 'template-parts/content/content', 'none' );
-
+			echo '<p>' . esc_html__( 'No results found.', 'kahu' ) . '</p>';
+			get_search_form();
 		endif;
 		?>
-		</main><!-- #main -->
-	</section><!-- #primary -->
+	</main>
 
 <?php
 get_footer();

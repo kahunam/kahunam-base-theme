@@ -1,0 +1,605 @@
+/* ============================================================
+ *  Kahunam Base Theme — WordPress Block Base Styles
+ *  Ensures all default WordPress blocks render correctly
+ *  using the Kahunam CSS Framework variables.
+ * ============================================================ */
+
+
+/* ==========================================================================
+   LAYOUT — Page Templates
+   ========================================================================== */
+
+.template-default {
+  max-width: var(--container-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-horizontal);
+  padding-right: var(--container-padding-horizontal);
+}
+
+.template-contained {
+  max-width: var(--container-width-small);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-horizontal);
+  padding-right: var(--container-padding-horizontal);
+}
+
+.template-full-width {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   LAYOUT — Block Alignment
+   ========================================================================== */
+
+.alignwide {
+  max-width: var(--container-width-content);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignfull {
+  max-width: none;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignleft {
+  float: left;
+  margin-right: var(--spacing-large);
+  margin-bottom: var(--spacing-medium);
+}
+
+.alignright {
+  float: right;
+  margin-left: var(--spacing-large);
+  margin-bottom: var(--spacing-medium);
+}
+
+
+/* ==========================================================================
+   HIDE TITLE / FEATURED IMAGE (via post meta body classes)
+   ========================================================================== */
+
+.hide-title .entry-title,
+.hide-title .wp-block-post-title {
+  display: none;
+}
+
+.hide-featured-image .post-thumbnail,
+.hide-featured-image .wp-block-post-featured-image {
+  display: none;
+}
+
+
+/* ==========================================================================
+   PARAGRAPH
+   ========================================================================== */
+
+.wp-block-paragraph {
+  margin-bottom: var(--spacing-medium);
+  line-height: 1.7;
+}
+
+
+/* ==========================================================================
+   HEADINGS
+   ========================================================================== */
+
+.wp-block-heading {
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-medium);
+  font-family: var(--font-family-header);
+  line-height: 1.2;
+}
+
+
+/* ==========================================================================
+   IMAGE
+   ========================================================================== */
+
+.wp-block-image {
+  margin-bottom: var(--spacing-large);
+}
+
+.wp-block-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wp-block-image figcaption {
+  margin-top: var(--spacing-small);
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   GALLERY
+   ========================================================================== */
+
+.wp-block-gallery {
+  margin-bottom: var(--spacing-large);
+}
+
+.wp-block-gallery figcaption {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+
+/* ==========================================================================
+   LIST
+   ========================================================================== */
+
+.wp-block-list {
+  margin-bottom: var(--spacing-medium);
+  padding-left: var(--spacing-large);
+  line-height: 1.7;
+}
+
+.wp-block-list li + li {
+  margin-top: var(--spacing-small);
+}
+
+
+/* ==========================================================================
+   QUOTE
+   ========================================================================== */
+
+.wp-block-quote {
+  margin-bottom: var(--spacing-large);
+  padding-left: var(--spacing-large);
+  border-left: 4px solid var(--color-primary);
+  font-style: italic;
+}
+
+.wp-block-quote p {
+  margin-bottom: var(--spacing-small);
+  font-size: var(--font-size-large);
+  line-height: 1.6;
+}
+
+.wp-block-quote cite {
+  display: block;
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  font-style: normal;
+}
+
+.wp-block-quote.is-style-large {
+  padding-left: var(--spacing-extra-large);
+}
+
+.wp-block-quote.is-style-large p {
+  font-size: var(--font-size-extra-large);
+}
+
+
+/* ==========================================================================
+   PULLQUOTE
+   ========================================================================== */
+
+.wp-block-pullquote {
+  margin-bottom: var(--spacing-large);
+  padding: var(--spacing-large) 0;
+  border-top: 4px solid var(--color-foreground);
+  border-bottom: 4px solid var(--color-foreground);
+  text-align: center;
+}
+
+.wp-block-pullquote blockquote p {
+  font-size: var(--font-size-extra-large);
+  line-height: 1.4;
+}
+
+.wp-block-pullquote cite {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   CODE / PREFORMATTED
+   ========================================================================== */
+
+.wp-block-code {
+  margin-bottom: var(--spacing-large);
+  padding: var(--spacing-medium);
+  background-color: var(--color-subtle-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  overflow-x: auto;
+}
+
+.wp-block-code code {
+  font-family: var(--font-family-code);
+  font-size: var(--font-size-small);
+  line-height: 1.6;
+}
+
+.wp-block-preformatted {
+  margin-bottom: var(--spacing-large);
+  padding: var(--spacing-medium);
+  background-color: var(--color-subtle-background);
+  border-radius: var(--border-radius-small);
+  font-family: var(--font-family-code);
+  font-size: var(--font-size-small);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+
+.wp-block-table {
+  margin-bottom: var(--spacing-large);
+  overflow-x: auto;
+}
+
+.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+}
+
+.wp-block-table th,
+.wp-block-table td {
+  padding: var(--spacing-small) var(--spacing-medium);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.wp-block-table th {
+  background-color: var(--color-subtle-background);
+  font-weight: var(--font-weight-semibold);
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background-color: var(--color-subtle-background);
+}
+
+.wp-block-table.is-style-stripes th,
+.wp-block-table.is-style-stripes td {
+  border-color: transparent;
+}
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.wp-block-buttons {
+  margin-bottom: var(--spacing-large);
+}
+
+.wp-block-button .wp-block-button__link {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  text-decoration: none;
+  border-radius: var(--border-radius-small);
+  transition: opacity var(--transition-speed-base);
+}
+
+.wp-block-button .wp-block-button__link:hover {
+  opacity: 0.85;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link {
+  background: transparent;
+  border: 2px solid currentColor;
+}
+
+
+/* ==========================================================================
+   COLUMNS
+   ========================================================================== */
+
+.wp-block-columns {
+  margin-bottom: var(--spacing-large);
+  gap: var(--grid-gap-size);
+}
+
+
+/* ==========================================================================
+   GROUP
+   ========================================================================== */
+
+.wp-block-group {
+  margin-bottom: var(--spacing-large);
+}
+
+
+/* ==========================================================================
+   COVER
+   ========================================================================== */
+
+.wp-block-cover {
+  margin-bottom: var(--spacing-large);
+  min-height: 430px;
+}
+
+.wp-block-cover .wp-block-cover__inner-container {
+  max-width: var(--container-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--spacing-large) var(--container-padding-horizontal);
+}
+
+
+/* ==========================================================================
+   MEDIA & TEXT
+   ========================================================================== */
+
+.wp-block-media-text {
+  margin-bottom: var(--spacing-large);
+}
+
+
+/* ==========================================================================
+   SEPARATOR
+   ========================================================================== */
+
+.wp-block-separator {
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-large);
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.wp-block-separator.is-style-wide {
+  width: 100%;
+}
+
+.wp-block-separator.is-style-dots {
+  border: none;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   SPACER
+   ========================================================================== */
+
+.wp-block-spacer {
+  clear: both;
+}
+
+
+/* ==========================================================================
+   EMBED / VIDEO / AUDIO
+   ========================================================================== */
+
+.wp-block-embed {
+  margin-bottom: var(--spacing-large);
+}
+
+.wp-block-embed .wp-block-embed__wrapper {
+  position: relative;
+}
+
+.wp-block-video {
+  margin-bottom: var(--spacing-large);
+}
+
+.wp-block-video video {
+  max-width: 100%;
+  height: auto;
+}
+
+.wp-block-audio {
+  margin-bottom: var(--spacing-large);
+}
+
+.wp-block-audio audio {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   FILE
+   ========================================================================== */
+
+.wp-block-file {
+  margin-bottom: var(--spacing-medium);
+}
+
+.wp-block-file .wp-block-file__button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: var(--border-radius-small);
+}
+
+
+/* ==========================================================================
+   DETAILS (accordion)
+   ========================================================================== */
+
+.wp-block-details {
+  margin-bottom: var(--spacing-medium);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+}
+
+.wp-block-details summary {
+  padding: var(--spacing-medium);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.wp-block-details > *:not(summary) {
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+}
+
+
+/* ==========================================================================
+   VERSE
+   ========================================================================== */
+
+.wp-block-verse {
+  margin-bottom: var(--spacing-large);
+  font-family: var(--font-family-body);
+  font-style: italic;
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+
+/* ==========================================================================
+   FOOTNOTES
+   ========================================================================== */
+
+.wp-block-footnotes {
+  margin-top: var(--spacing-extra-large);
+  padding-top: var(--spacing-medium);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+
+/* ==========================================================================
+   SEARCH
+   ========================================================================== */
+
+.wp-block-search .wp-block-search__input {
+  padding: var(--form-field-padding);
+  border: 1px solid var(--form-field-border-color);
+  border-radius: var(--border-radius-small);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-body);
+}
+
+.wp-block-search .wp-block-search__input:focus {
+  outline: none;
+  border-color: var(--form-field-focus-border-color);
+  box-shadow: 0 0 0 3px var(--form-field-focus-shadow);
+}
+
+.wp-block-search .wp-block-search__button {
+  padding: 0.5em 1em;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius-small);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   LATEST POSTS
+   ========================================================================== */
+
+.wp-block-latest-posts {
+  margin-bottom: var(--spacing-large);
+  padding-left: 0;
+  list-style: none;
+}
+
+.wp-block-latest-posts li {
+  margin-bottom: var(--spacing-medium);
+}
+
+.wp-block-latest-posts a {
+  font-weight: var(--font-weight-medium);
+}
+
+.wp-block-latest-posts__post-date,
+.wp-block-latest-posts__post-author {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+.wp-block-latest-posts__post-excerpt {
+  font-size: var(--font-size-small);
+  margin-top: var(--spacing-small);
+}
+
+
+/* ==========================================================================
+   CATEGORIES / ARCHIVES / TAG CLOUD
+   ========================================================================== */
+
+.wp-block-categories,
+.wp-block-archives {
+  margin-bottom: var(--spacing-medium);
+  padding-left: var(--spacing-large);
+}
+
+.wp-block-tag-cloud {
+  margin-bottom: var(--spacing-medium);
+}
+
+.wp-block-tag-cloud a {
+  display: inline-block;
+  margin-right: var(--spacing-small);
+  margin-bottom: var(--spacing-small);
+}
+
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+
+.wp-block-navigation .wp-block-navigation-item a {
+  text-decoration: none;
+}
+
+
+/* ==========================================================================
+   POST CONTENT BLOCKS (post title, excerpt, date, etc.)
+   ========================================================================== */
+
+.wp-block-post-title {
+  font-family: var(--font-family-header);
+}
+
+.wp-block-post-date,
+.wp-block-post-author,
+.wp-block-post-terms {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+.wp-block-post-excerpt {
+  font-size: var(--font-size-base);
+  color: var(--color-muted);
+}
+
+
+/* ==========================================================================
+   INLINE CODE
+   ========================================================================== */
+
+:where(.wp-block-paragraph) code,
+:where(.wp-block-list) code,
+:where(.wp-block-heading) code {
+  font-family: var(--font-family-code);
+  font-size: 0.875em;
+  padding: 0.15em 0.35em;
+  background-color: var(--color-subtle-background);
+  border-radius: var(--border-radius-extra-small);
+}

@@ -2,7 +2,7 @@
 /**
  * Kahunam Base Theme functions and definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ * Minimal theme shell — header and footer are built with blocks.
  *
  * @package kahu
  */
@@ -25,26 +25,7 @@ if ( ! function_exists( 'kahu_setup' ) ) :
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
-
-		add_theme_support(
-			'custom-logo',
-			array(
-				'height'      => 32,
-				'width'       => 120,
-				'flex-height' => true,
-				'flex-width'  => true,
-			)
-		);
-
-		register_nav_menus(
-			array(
-				'primary'  => __( 'Primary', 'kahu' ),
-				'footer-1' => __( 'Footer Col 1', 'kahu' ),
-				'footer-2' => __( 'Footer Col 2', 'kahu' ),
-				'footer-3' => __( 'Footer Col 3', 'kahu' ),
-				'footer-4' => __( 'Footer Col 4', 'kahu' ),
-			)
-		);
+		add_theme_support( 'custom-logo' );
 
 		add_theme_support(
 			'html5',
@@ -59,10 +40,9 @@ if ( ! function_exists( 'kahu_setup' ) ) :
 			)
 		);
 
-		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'editor-styles' );
-		add_editor_style( 'css/theme.css' );
+		add_editor_style( array( 'css/framework.css', 'css/blocks.css' ) );
 		add_theme_support( 'align-wide' );
 		remove_theme_support( 'block-templates' );
 	}
@@ -70,44 +50,48 @@ endif;
 add_action( 'after_setup_theme', 'kahu_setup' );
 
 /**
- * Register widget area.
- */
-function kahu_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => __( 'Footer', 'kahu' ),
-			'id'            => 'sidebar-1',
-			'description'   => __( 'Add widgets here to appear in your footer.', 'kahu' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'kahu_widgets_init' );
-
-/**
  * Enqueue scripts and styles.
  */
 function kahu_scripts() {
 	wp_enqueue_style( 'kahu-framework', get_template_directory_uri() . '/css/framework.css', array(), KAHU_VERSION );
-	wp_enqueue_style( 'kahu-theme', get_template_directory_uri() . '/css/theme.css', array( 'kahu-framework' ), KAHU_VERSION );
+	wp_enqueue_style( 'kahu-blocks', get_template_directory_uri() . '/css/blocks.css', array( 'kahu-framework' ), KAHU_VERSION );
+	wp_enqueue_style( 'kahu-theme', get_template_directory_uri() . '/css/theme.css', array( 'kahu-blocks' ), KAHU_VERSION );
 	wp_enqueue_style( 'kahu-style', get_stylesheet_uri(), array( 'kahu-theme' ), KAHU_VERSION );
-	wp_enqueue_script( 'kahu-navigation', get_template_directory_uri() . '/js/navigation.js', array(), KAHU_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+	wp_enqueue_style( 'kahu-override', get_template_directory_uri() . '/css/override.css', array( 'kahu-style' ), KAHU_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'kahu_scripts' );
 
 /**
- * Custom template tags for this theme.
+ * Register custom post meta fields exposed via REST API.
  */
-require get_template_directory() . '/inc/template-tags.php';
+function kahu_register_meta() {
+	$meta_args = array(
+		'show_in_rest'  => true,
+		'single'        => true,
+		'type'          => 'boolean',
+		'default'       => false,
+		'auth_callback' => function () {
+			return current_user_can( 'edit_posts' );
+		},
+	);
+
+	register_post_meta( '', '_kahu_hide_title', $meta_args );
+	register_post_meta( '', '_kahu_hide_featured_image', $meta_args );
+}
+add_action( 'init', 'kahu_register_meta' );
 
 /**
- * Functions which enhance the theme by hooking into WordPress.
+ * Add body classes for page template and meta options.
  */
-require get_template_directory() . '/inc/template-functions.php';
+function kahu_body_classes( $classes ) {
+	if ( is_singular() ) {
+		if ( get_post_meta( get_the_ID(), '_kahu_hide_title', true ) ) {
+			$classes[] = 'hide-title';
+		}
+		if ( get_post_meta( get_the_ID(), '_kahu_hide_featured_image', true ) ) {
+			$classes[] = 'hide-featured-image';
+		}
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'kahu_body_classes' );

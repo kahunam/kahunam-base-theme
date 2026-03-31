@@ -34,6 +34,12 @@
 		"layout": {
 			"contentSize": "860px",
 			"wideSize": "1300px"
+		},
+		"spacing": {
+			"units": [ "px", "em", "rem", "%", "vw", "vh" ]
+		},
+		"typography": {
+			"fluid": true
 		}
 	}
 }

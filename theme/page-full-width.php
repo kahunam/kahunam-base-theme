@@ -1,6 +1,8 @@
 <?php
 /**
- * The template for displaying all single posts
+ * Template Name: Full Width
+ *
+ * No content container — blocks control their own width.
  *
  * @package kahu
  */
@@ -8,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="main">
+	<main id="main" class="template-full-width">
 		<?php
 		while ( have_posts() ) :
 			the_post();

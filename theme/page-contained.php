@@ -1,6 +1,8 @@
 <?php
 /**
- * The template for displaying all single posts
+ * Template Name: Contained
+ *
+ * Narrow content width for text-heavy pages.
  *
  * @package kahu
  */
@@ -8,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="main">
+	<main id="main" class="template-contained">
 		<?php
 		while ( have_posts() ) :
 			the_post();

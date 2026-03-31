@@ -2,9 +2,7 @@
 /**
  * The template for displaying the footer
  *
- * Contains the closing of the `#content` element and all content thereafter.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ * Minimal shell — footer content is built with blocks.
  *
  * @package kahu
  */
@@ -13,7 +11,9 @@
 
 	</div><!-- #content -->
 
-	<?php get_template_part( 'template-parts/layout/footer', 'content' ); ?>
+	<footer id="colophon" class="site-footer">
+		<?php do_action( 'kahu_footer' ); ?>
+	</footer>
 
 </div><!-- #page -->
 
