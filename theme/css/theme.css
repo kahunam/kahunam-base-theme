@@ -45,3 +45,28 @@
   width: auto;
   z-index: 100000;
 }
+
+/* Fallback header */
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header #primary-menu {
+  display: flex;
+  gap: var(--spacing-large);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header #primary-menu a {
+  color: var(--color-foreground);
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+}
+
+.site-header #primary-menu a:hover {
+  color: var(--color-primary);
+}

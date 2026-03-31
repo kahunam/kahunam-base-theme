@@ -66,16 +66,33 @@
 
 
 /* ==========================================================================
-   HIDE TITLE / FEATURED IMAGE (via post meta body classes)
+   DISABLE ELEMENTS (via post meta body classes)
    ========================================================================== */
 
-.hide-title .entry-title,
-.hide-title .wp-block-post-title {
+.disable-top-bar .site-top-bar {
   display: none;
 }
 
-.hide-featured-image .post-thumbnail,
-.hide-featured-image .wp-block-post-featured-image {
+.disable-header .site-header {
+  display: none;
+}
+
+.disable-primary-navigation #primary-menu,
+.disable-primary-navigation .main-navigation {
+  display: none;
+}
+
+.disable-featured-image .post-thumbnail,
+.disable-featured-image .wp-block-post-featured-image {
+  display: none;
+}
+
+.disable-content-title .entry-title,
+.disable-content-title .wp-block-post-title {
+  display: none;
+}
+
+.disable-footer .site-footer {
   display: none;
 }
 
