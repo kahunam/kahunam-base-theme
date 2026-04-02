@@ -156,6 +156,17 @@ function kahu_default_header() {
 	if ( kahu_is_disabled( '_kahu_disable_header' ) ) {
 		return;
 	}
+	// Don't render fallback if another callback is hooked.
+	global $wp_filter;
+	if ( ! empty( $wp_filter['kahu_header'] ) ) {
+		$count = 0;
+		foreach ( $wp_filter['kahu_header']->callbacks as $priorities ) {
+			$count += count( $priorities );
+		}
+		if ( $count > 1 ) {
+			return;
+		}
+	}
 	?>
 	<div class="content-container align-container-center flex-direction-row align-items-center justify-content-space-between padding-vertical-medium">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="link-unstyled font-weight-bold" style="font-size: var(--font-size-large);">
@@ -185,6 +196,17 @@ add_action( 'kahu_header', 'kahu_default_header' );
 function kahu_default_footer() {
 	if ( kahu_is_disabled( '_kahu_disable_footer' ) ) {
 		return;
+	}
+	// Don't render fallback if another callback is hooked.
+	global $wp_filter;
+	if ( ! empty( $wp_filter['kahu_footer'] ) ) {
+		$count = 0;
+		foreach ( $wp_filter['kahu_footer']->callbacks as $priorities ) {
+			$count += count( $priorities );
+		}
+		if ( $count > 1 ) {
+			return;
+		}
 	}
 	?>
 	<div class="content-container align-container-center padding-vertical-large" style="border-top: 1px solid var(--color-border); font-size: var(--font-size-small); color: var(--color-muted);">
