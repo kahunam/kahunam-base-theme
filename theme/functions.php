@@ -56,6 +56,24 @@ endif;
 add_action( 'after_setup_theme', 'kahu_setup' );
 
 /**
+ * Register widget areas.
+ */
+function kahu_widgets_init() {
+	register_sidebar(
+		array(
+			'name'          => __( 'Sidebar', 'kahu' ),
+			'id'            => 'sidebar-1',
+			'description'   => __( 'Add widgets here to appear in the sidebar.', 'kahu' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+}
+add_action( 'widgets_init', 'kahu_widgets_init' );
+
+/**
  * Enqueue scripts and styles.
  */
 function kahu_scripts() {
